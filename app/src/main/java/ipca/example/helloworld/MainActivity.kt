@@ -7,22 +7,23 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
+
+    var isTranslated = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        var textViewHello : TextView = TextView(this)
-        textViewHello.text = "Hello world!"
+        val textViewHello = findViewById<TextView>(R.id.textViewHello)
+        val buttonTranslate = findViewById<Button>(R.id.buttonTranslate)
 
-        var buttonTranslate = Button(this)
-        buttonTranslate.text = "Traduzir"
         buttonTranslate.setOnClickListener {
-            textViewHello.text = "Olá mundo!"
+            if (isTranslated) {
+                textViewHello.text = "Hello world!"
+            }else {
+                textViewHello.text = "Olá mundo!"
+            }
+            isTranslated = !isTranslated
         }
-
-        var linearLayout = LinearLayout(this)
-        linearLayout.addView(textViewHello)
-        linearLayout.addView(buttonTranslate)
-
-        setContentView(linearLayout)
     }
 }
